@@ -162,19 +162,6 @@ def home():
                 0%, 100% { transform: translateY(0px); }
                 50% { transform: translateY(-10px); }
             }
-            .feature-badge {
-                background: linear-gradient(135deg, #667eea, #764ba2);
-                color: white;
-                padding: 6px 16px;
-                border-radius: 25px;
-                font-size: 14px;
-                font-weight: 500;
-            }
-            .glass-effect {
-                background: rgba(255, 255, 255, 0.1);
-                backdrop-filter: blur(10px);
-                border: 1px solid rgba(255, 255, 255, 0.2);
-            }
         </style>
     </head>
     <body class="position-relative">
@@ -187,7 +174,7 @@ def home():
                                 <i class="fas fa-magic fa-4x main-title"></i>
                             </div>
                             <h1 class="display-5 fw-bold mb-3 main-title">Product Price Predictor</h1>
-                            <p class="lead text-muted mb-0">Upload an image and get instant price prediction using AI ✨</p>
+                            <p class="lead text-muted mb-0">Upload an image and get instant price prediction ✨</p>
                         </div>
                         
                         <form action="/predict" method="post" enctype="multipart/form-data">
@@ -217,12 +204,6 @@ def home():
                                 Predict Price Now
                             </button>
                         </form>
-
-                        <div class="mt-4 text-center">
-                            <span class="feature-badge">
-                                <i class="fas fa-shield-alt me-1"></i>AI Powered
-                            </span>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -232,6 +213,7 @@ def home():
     </body>
     </html>
     """
+
 
 
 @app.post("/predict", response_class=HTMLResponse)
@@ -365,14 +347,6 @@ async def predict(
             transform: translateY(-5px);
             box-shadow: 0 20px 40px rgba(74, 222, 128, 0.2);
         }}
-        .confidence-badge {{
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-size: 14px;
-            font-weight: 600;
-        }}
     </style>
 </head>
 <body>
@@ -397,12 +371,6 @@ async def predict(
                     <div class="metric-card">
                         <h5 class="text-muted mb-2"><i class="fas fa-receipt me-2"></i>Total price</h5>
                         <h3 class="price-highlight mb-0">${total:.2f}</h3>
-                    </div>
-                    
-                    <div class="mt-4">
-                        <span class="confidence-badge">
-                            <i class="fas fa-brain me-1"></i>AI Confidence: 98%
-                        </span>
                     </div>
                     
                     <a href="/" class="back-btn mt-5 d-inline-block">
