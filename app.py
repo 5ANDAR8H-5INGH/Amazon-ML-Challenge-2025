@@ -1,6 +1,5 @@
 import gradio as gr
 import numpy as np
-import lightgbm as lgb
 import joblib
 from tensorflow.keras.applications import ResNet50
 from tensorflow.keras.applications.resnet50 import preprocess_input
@@ -11,7 +10,7 @@ import re
 import ftfy
 
 print("🔄 Loading models...")
-model = lgb.Booster(model_file='model.lgb')
+model = joblib.load('model1.pkl')  # Changed from model.lgb
 vectorizer = joblib.load('vectorizer.pkl')
 resnet = ResNet50(weights='imagenet', include_top=False, pooling='avg')
 EMBSIZE = 2048
@@ -46,10 +45,9 @@ def predict_price(image, quantity, description=""):
     total = price_per * quantity
     return f"**Predicted Total: ${total:.2f}**\n(per unit: ${price_per:.2f})"
 
+# Rest of Gradio UI code stays same...
 with gr.Blocks(title="Product Price Predictor") as demo:
     gr.Markdown("# 🛒 Product Price Predictor")
-    gr.Markdown("Upload image + pack quantity → Get price prediction")
-    
     with gr.Row():
         with gr.Column():
             image = gr.Image(type="filepath", label="📸 Product Image")
@@ -57,10 +55,9 @@ with gr.Blocks(title="Product Price Predictor") as demo:
             desc = gr.Textbox(label="📝 Description (optional)", 
                             placeholder="e.g., 'basil 6.25 oz herb spice'")
             predict_btn = gr.Button("🔮 Predict Price", variant="primary")
-        
         output = gr.Textbox(label="💰 Prediction", lines=2)
     
     predict_btn.click(predict_price, inputs=[image, quantity, desc], outputs=output)
 
 if __name__ == "__main__":
-    demo.launch()
+    demo.launch(share=True)
