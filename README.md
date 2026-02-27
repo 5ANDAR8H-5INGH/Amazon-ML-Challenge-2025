@@ -1,6 +1,10 @@
 # 📦 Product Price Predictor 
 
 A multimodal ML pipeline for e-commerce product price prediction using text and image embeddings.
+## 🌐 Live Demo
+
+🚀 Deployed Application: 
+[![Live-Demo Click-Here](https://img.shields.io/badge/Live-Demo-green?style=for-the-badge)](https://amazon-ml-challenge-2025.onrender.com)
 
 ## 🧠 Project Overview
 
